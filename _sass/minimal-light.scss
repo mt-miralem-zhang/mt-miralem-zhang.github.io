@@ -1,5 +1,45 @@
+body, p, ul, ol, li, dl, dt, dd, blockquote, section, header, footer {
+  font-family: "Times New Roman", Times, "Liberation Serif", serif !important;
+}
+
+section ul li, section ol li {
+  margin-bottom: 0.7em;
+}
+
+.page-horizon {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-top: 60px;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.page-horizon svg {
+  display: block;
+  width: 100%;
+  height: 90px;
+}
+
+.page-horizon svg .horizon-base {
+  fill: #e8d3b3;
+}
+.page-horizon svg .horizon-trail {
+  fill: #b8915e;
+  opacity: 0.55;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page-horizon svg .horizon-base { fill: #2a2520; }
+  .page-horizon svg .horizon-trail { fill: #6f5a44; opacity: 0.7; }
+}
+
+body {
+  overflow-x: hidden;
+}
+
 .pub-row {
-  display: flex; 
+  display: flex;
   align-items: center;}
 
 .social-icons a{
@@ -7,18 +47,19 @@
   height:2.4rem;
   width:2.4rem;
   background-color:transparent;
-  color:#043361!important;
+  color:#8a5a3d!important;
   border-radius:100%;
   text-align:center;
   font-size:1.15rem;
   line-height:2.5rem;
-  margin-right:1rem}
+  margin-right:1rem;
+  transition: transform .2s ease, background-color .2s ease;}
 
 @media (prefers-color-scheme: dark) { .social-icons a {color: #3eb7f0 !important; }}
 
-.social-icons a:last-child{margin-right:0}.social-icons a:hover{background-color:white;
-    color:black;
-    transform: scale(1.2)}
+.social-icons a:last-child{margin-right:0}.social-icons a:hover{background-color:#efe7d7;
+    color:#8a5a3d !important;
+    transform: scale(1.18)}
     /*
     .social-icons a:after {
         content: '';
@@ -207,7 +248,14 @@ papertitle {
     }
 
     .image.avatar {
-      border-radius: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      background-image: url("../img/avatar-hover.jpg");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 3px 16px rgba(138, 90, 61, 0.22), 0 0 0 1px #e8dfcd;
+      width: 11em;
+      height: 11em;
     }
 
       .image.avatar:before {
@@ -215,45 +263,63 @@ papertitle {
       }
 
       .image.avatar img {
-        border-radius: 100%;
-        width: 45%;
-        padding: 20px;
-        // border: 1px solid #ddd;
-        // padding: 3px;
-        // box-shadow: 0 -1px 5px 1px rgba(200, 200, 200, 0.3);
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding: 0;
+        margin: 0;
+        background: transparent;
+        box-shadow: none;
+        display: block;
+        transition: opacity 0.45s ease;
+      }
+
+      .image.avatar:hover img {
+        opacity: 0;
       }
 
     #header .image.avatar {
       margin: 0 0 1em 0;
-      width: 8.00em;
+      width: 11em;
+      height: 11em;
     }
 
 h3, h4, h5, h6 {
   font-weight: 600;
-  color:#043361;
+  color:#8a5a3d;
   margin:0 0 20px;
 }
 
 h1 {
-  font-weight: 500;
-  color:#043361;
+  font-weight: 600;
+  color:#8a5a3d;
   margin:0 0 20px;
+  letter-spacing: -0.01em;
 }
 
 h2 {
-  color:#043361;
-  font-weight: 500;
-  margin:2px 0px 15px;
-  font-size: 157%;
+  color:#8a5a3d;
+  font-weight: 600;
+  margin: 30px 0px 18px;
+  font-size: 168%;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e3ddd2;
+  letter-spacing: -0.01em;
+}
+
+section > h2:first-of-type {
+  margin-top: 0;
 }
 
 @media (prefers-color-scheme: dark) {
   h1, h3, h4, h5, h6 {
-    color:rgb(62, 183, 240);
+    color:#e5b893;
   }
 
   h2 {
-    color:rgb(62, 183, 240);
+    color:#e5b893;
+    border-bottom-color: #3a3631;
   }
 }
 
@@ -269,13 +335,16 @@ h1 {
   font-size:28px;
 }
 
-a {
-  color:#39c;
+a, a:visited {
+  color:#8a5a3d !important;
   text-decoration:none;
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
 }
 
 a:hover {
-  color:#069;
+  color:#6b4329 !important;
+  border-bottom-color: #c79680;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -301,24 +370,33 @@ a:hover small {
 }
 
 blockquote {
-  border-left:1px solid #e5e5e5;
+  border-left:3px solid #c9b9a4;
   margin:0;
   padding:0 0 0 20px;
   font-style:italic;
+  color:#5a5a5a;
 }
 
-code, pre {
-  font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, Consolas, Liberation Mono, DejaVu Sans Mono, Courier New, monospace;
-  color:#333;
+code {
+  color:#2c2c2c;
+  background:#efe7d7;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.92em;
 }
 
 pre {
   max-width:500px;
   padding:8px 15px;
-  background: #f8f8f8;
-  border-radius:5px;
-  border:1px solid #e5e5e5;
+  background:#f0ebe2;
+  border-radius:6px;
+  border:1px solid #e3ddd2;
   overflow-x: auto;
+}
+
+pre code {
+  background: transparent;
+  padding: 0;
 }
 
 table {
@@ -329,16 +407,16 @@ table {
 th, td {
   text-align:left;
   padding:5px 10px;
-  border-bottom:1px solid #e5e5e5;
+  border-bottom:1px solid #e3ddd2;
 }
 
 dt {
-  color:#444;
+  color:#8a5a3d;
   font-weight:500;
 }
 
 th {
-  color:#444;
+  color:#8a5a3d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -410,8 +488,8 @@ header ul a:active {
 }
 
 strong {
-  color:#222;
-  font-weight:500;
+  color:#1c1c1c;
+  font-weight:600;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -444,7 +522,7 @@ small {
 
 hr {
   border:0;
-  background:#e5e5e5;
+  background:#e3ddd2;
   height:1px;
   margin:0 0 20px;
 }
@@ -498,19 +576,25 @@ footer {
   }
 
 
+   .image.avatar {
+        width: 140px;
+        height: 140px;
+      }
    .image.avatar img {
-        border-radius: 100%;
-        width: 117px;
-        padding:20px;
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        padding: 0;
       }
   #head1o2 {
     visibility: hidden;
   }
-      
+
   #head2o2 {
     visibility: hidden;
   }
-  
+
 }
 
 @media print, screen and (max-width: 960px) {
@@ -554,15 +638,21 @@ footer {
     width:33%;
   }
 
+  .image.avatar {
+      width: 115px;
+      height: 115px;
+  }
   .image.avatar img {
-      border-radius: 100%;
-      width: 95px;
-      padding:20px;
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      padding: 0;
   }
   #head1o2 {
     visibility: hidden;
   }
-  
+
   #head2o2 {
     visibility: hidden;
   }

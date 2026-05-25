@@ -53,9 +53,9 @@
         <a href="{{ site.affiliation_link }}" rel="noopener"><autocolor>{{ site.affiliation }}</autocolor></a>
         <br>
         {% endif %}
-        {% if site.email %}
-        <email>{{ site.email }}</email>
-        {% endif %}
+        {% for e in site.emails %}
+        <email>{{ e }}</email>{% unless forloop.last %}<br>{% endunless %}
+        {% endfor %}
 
         <br>
         <br>
@@ -104,13 +104,47 @@
       <br>
 
       {% if site.enable_footnote %}
-      <p><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
+      <p style="text-align:left;"><small>Powered by Jekyll and <a href="https://github.com/yaoyao-liu/minimal-light" target="_blank" rel="noopener">Minimal Light</a> theme.</small></p>
       {% endif %}
 
       </section>
       <footer>
-        
       </footer>
+    </div>
+    <div id="visitor-map" style="clear:both;width:200px;max-height:160px;overflow:hidden;margin:40px auto 24px;text-align:center;opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease;pointer-events:none;position:relative;z-index:2;">
+      <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=Hzl0YV68GKGSr114043kcKr3rUqC69msg6mR4fDUdf0&cl=ffffff&w=a"></script>
+    </div>
+    <script>
+      (function(){
+        var el = document.getElementById('visitor-map');
+        if(!el) return;
+        var shown = false;
+        function reveal(){
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+          el.style.pointerEvents = 'auto';
+          shown = true;
+          window.removeEventListener('scroll', check);
+        }
+        function check(){
+          if(shown) return;
+          var scrolled = window.innerHeight + window.scrollY;
+          var full = document.documentElement.scrollHeight;
+          if(scrolled >= full - 40) reveal();
+        }
+        window.addEventListener('scroll', check, { passive: true });
+        window.addEventListener('resize', check);
+        window.addEventListener('load', check);
+        check();
+      })();
+    </script>
+    <div class="page-horizon" aria-hidden="true">
+      <svg viewBox="0 0 1200 100" preserveAspectRatio="none">
+        <!-- main horizon band -->
+        <path class="horizon-base" d="M0,100 L0,38 Q600,-30 1200,38 L1200,100 Z" />
+        <!-- a small path narrowing into the distance -->
+        <path class="horizon-trail" d="M 562,100 C 582,72 596,38 598,5 L 602,5 C 604,38 618,72 638,100 Z" />
+      </svg>
     </div>
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
     {% if site.google_analytics %}
