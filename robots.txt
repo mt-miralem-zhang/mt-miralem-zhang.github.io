@@ -1,0 +1,9 @@
+---
+layout: null
+---
+User-agent: *
+{% if site.block_search_engines -%}
+Disallow: /
+{%- else -%}
+Disallow:
+{%- endif %}

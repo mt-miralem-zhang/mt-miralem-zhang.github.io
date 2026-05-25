@@ -8,6 +8,8 @@ emails:
   - mtzhang (at) g.ucla.edu
 
 # Search Engine Optimization (SEO)
+# Set to false when you're ready to be indexed by Google etc.
+block_search_engines: true
 keywords: Mingtao Zhang, Miralem Zhang, Zhejiang University, ZJU, CKC Honors College, AI for Healthcare, Drug Design, Foundation Models, Multi-modal Learning, Large Language Models
 description: Personal homepage of Mingtao (Miralem) Zhang — undergraduate at Zhejiang University, researching AI for healthcare, drug design, foundation models, and multi-modal learning.
 
